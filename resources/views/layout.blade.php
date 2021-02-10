@@ -48,7 +48,15 @@
         </div>
     </div>
 </nav>
-
+<div class="container">
+    <div class="text-right">
+        @guest
+            <a href="/login">Вход</a> | <a href="/register">Регистрация</a>
+        @else
+            {{ Auth::user()->name }} | <a href="/logout">Выход</a>
+        @endguest
+    </div>
+</div>
 <div class="container">
     @yield('content')
 </div>

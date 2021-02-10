@@ -2,29 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AboutRequest;
 use App\Models\About;
-use App\Models\Product;
 use Illuminate\Http\Request;
 
-class MainController extends Controller
+class AboutController extends Controller
 {
-    public function home() {
-        $products = new Product();
-        return view('home', ['products' => $products->all()]);
-    }
 
     public function about() {
         return view('about');
     }
 
-    public function about_check(Request $request) {
+    public function about_check(AboutRequest $request) {
 
-        //Валидация
-        $val = $request->validate([
-            'email'=>'required|min:6|max:100',
-            'name'=>'required|min:2|max:100',
-            'message'=>'required|min:10|max:600',
-        ]);
+        // $validatedData = $request->validated();
 
         // Заполняем модель
         $about = new About();
