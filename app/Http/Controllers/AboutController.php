@@ -16,7 +16,7 @@ class AboutController extends Controller
     public function add(AboutRequest $request) {
 
         // $validatedData = $request->validated();
-
+        // TODO вынести заполнение
         // Заполняем модель
         $about = new About();
         $about->name = $request->input('name');

@@ -34,6 +34,7 @@ class ArticleController extends Controller
 
     public function add(ArticleRequest $request) {
 
+        // TODO вынести заполнение
         // Заполняем модель
         $article = new Article();
         $article->head = $request->input('head');

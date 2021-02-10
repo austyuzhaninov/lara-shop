@@ -14,7 +14,8 @@ class CommentController extends Controller
 
     public function add(CommentRequest $request) {
 
-        dd($request);
+        //dd($request);
+        // TODO вынести заполнение
         // Заполняем модель
         $comment = new Comment();
         $comment->article_id = $request->input('name');
