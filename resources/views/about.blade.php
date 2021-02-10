@@ -26,7 +26,7 @@
                         </ul>
                     </div>
                 @endif
-                <form method="post" action="about/check">
+                <form method="post" action="about/add">
                     @csrf
                     <input type="text" name="name" id="name" class="form-control" placeholder="Имя"><br>
                     <input type="text" name="phone" id="phone" class="form-control" placeholder="Номер телефона"><br>

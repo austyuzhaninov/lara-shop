@@ -25,6 +25,9 @@
                     <a class="nav-link" aria-current="page" href="/">Каталог</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/article">Статьи</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/about">Контакты</a>
                 </li>
                 <li class="nav-item dropdown">

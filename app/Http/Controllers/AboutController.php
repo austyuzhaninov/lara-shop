@@ -13,7 +13,7 @@ class AboutController extends Controller
         return view('about');
     }
 
-    public function about_check(AboutRequest $request) {
+    public function add(AboutRequest $request) {
 
         // $validatedData = $request->validated();
 
