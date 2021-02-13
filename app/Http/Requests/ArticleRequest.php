@@ -24,7 +24,37 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'head' => ['required', 'string', 'min:2', 'max:100'],
+            'text' => ['required', 'string', 'min:2', 'max:400'],
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'required' => 'Параметр :attribute является обязательным!',
+            'min' => 'Минимальная длинна параметра :attribute является :min символов.',
+            'max' => 'Максимальная длинна параметра :attribute является :max символов.',
+        ];
+    }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'head' => 'Заголовок статьи',
+            'text' => 'Текст статьи',
+        ];
+    }
+
+
 }
