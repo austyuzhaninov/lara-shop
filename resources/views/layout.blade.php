@@ -30,6 +30,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/about">Контакты</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/api/documentation">API</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">Специальные предложения</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown">

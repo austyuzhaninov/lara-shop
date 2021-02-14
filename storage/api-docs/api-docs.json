@@ -1,0 +1,254 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel Swagger API documentation",
+        "contact": {
+            "email": "admin@example.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/api",
+            "description": "Laravel Swagger API server"
+        }
+    ],
+    "paths": {
+        "/article": {
+            "get": {
+                "tags": [
+                    "Pages"
+                ],
+                "summary": "Отображение всех статей",
+                "operationId": "articleAll",
+                "responses": {
+                    "200": {
+                        "description": "Request completed successfully"
+                    },
+                    "404": {
+                        "description": "Article not found"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Pages"
+                ],
+                "summary": "Create yet another article record",
+                "operationId": "articleCreate",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ArticleStoreRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Request completed successfully"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/article/{id}": {
+            "get": {
+                "tags": [
+                    "Pages"
+                ],
+                "summary": "Get article by ID",
+                "operationId": "articleGet",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of article",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request completed successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ArticleShowRequest"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Pages"
+                ],
+                "summary": "Update article by ID",
+                "operationId": "articleUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of article",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ArticleStoreRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Request completed successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ArticleShowRequest"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Pages"
+                ],
+                "summary": "Delete article by ID",
+                "operationId": "articleDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of article",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Deleted"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ArticleShowRequest": {
+                "title": "Article showing request",
+                "description": "Some simple request show as article",
+                "properties": {
+                    "head": {
+                        "title": "Head",
+                        "description": "Header of article",
+                        "type": "string",
+                        "example": "API: Red apples extend life"
+                    },
+                    "text": {
+                        "title": "Text",
+                        "description": "Article text",
+                        "type": "string",
+                        "example": "British scientists have proven ..."
+                    },
+                    "user_id": {
+                        "title": "user_id",
+                        "description": "User id who created article",
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "ArticleStoreRequest": {
+                "title": "Article storring request",
+                "description": "Some simple request create as article",
+                "properties": {
+                    "head": {
+                        "title": "Head",
+                        "description": "Header of article",
+                        "type": "string",
+                        "example": "API: Red apples extend life"
+                    },
+                    "text": {
+                        "title": "Text",
+                        "description": "Article text",
+                        "type": "string",
+                        "example": "British scientists have proven ..."
+                    },
+                    "user_id": {
+                        "title": "user_id",
+                        "description": "User id who created article",
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "X-APP-ID": {
+                "type": "apiKey",
+                "name": "X-APP-ID",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Pages",
+            "description": "Api methods our's shop"
+        }
+    ],
+    "security": [
+        []
+    ]
+}

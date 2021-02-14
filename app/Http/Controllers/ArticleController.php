@@ -16,7 +16,7 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = new Article();
-        return view('article', ['articles' => $articles->all()]);
+        return view('article', ['articles' => $articles->all()->sortDesc()]);
     }
 
     public function show($id)
