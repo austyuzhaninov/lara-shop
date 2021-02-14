@@ -23,7 +23,7 @@ Route::get('/article', 'ArticleController@index')->name('article');
 Route::post('/article/add', 'ArticleController@add');
 Route::get('/article/{id}', 'ArticleController@show')->name('articleShow');
 
-Route::post('article/comment/add', 'CommentController@add');
+Route::post('article/comment/add', 'CommentsController@add');
 
 /*Auth::routes();
 

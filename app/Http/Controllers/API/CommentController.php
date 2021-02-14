@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ArticleRequest;
-use App\Models\Article;
+use App\Http\Requests\CommentRequest;
+use App\Models\Comment;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ArticleController extends Controller
+class CommentController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/article",
-     *     operationId="articleAll",
-     *     tags={"Article"},
-     *     summary="Display all articles",
+     *     path="/comment",
+     *     operationId="commentAll",
+     *     tags={"Comment"},
+     *     summary="Display all comments",
      *     security={
      *       {"api_key": {}},
      *     },
@@ -26,7 +26,7 @@ class ArticleController extends Controller
      *     ),
      *     @OA\Response(
      *         response="404",
-     *         description="Article not found"
+     *         description="Comment not found"
      *     ),
      * )
      *
@@ -36,16 +36,16 @@ class ArticleController extends Controller
      */
     public function index() : JsonResponse
     {
-        $model = Article::query()->get();
+        $model = Comment::query()->get();
         return response()->json($model);
     }
 
     /**
      * @OA\Post(
-     *     path="/article",
-     *     operationId="articleCreate",
-     *     tags={"Article"},
-     *     summary="Create yet another article record",
+     *     path="/comment",
+     *     operationId="commentCreate",
+     *     tags={"Comment"},
+     *     summary="Create yet another comment record",
      *     security={
      *       {"api_key": {}},
      *     },
@@ -55,37 +55,38 @@ class ArticleController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/ArticleStoreRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/CommentStoreRequest")
      *     ),
      * )
+     *
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\ArticleRequest $request
+     * @param \App\Http\Requests\CommentRequest $request
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(ArticleRequest $request)
+    public function store(CommentRequest $request)
     {
-        $model = new Article();
+        $model = new Comment();
         $model->fill($request->all());
         $model->save();
 
-        return response('Article successfully inserted', 201);
+        return response('Comment successfully inserted', 201);
     }
 
     /**
      * @OA\Get(
-     *     path="/article/{id}",
-     *     operationId="articleGet",
-     *     tags={"Article"},
-     *     summary="Get article by ID",
+     *     path="/comment/{id}",
+     *     operationId="commentGet",
+     *     tags={"Comment"},
+     *     summary="Get comment by ID",
      *     security={
      *       {"api_key": {}},
      *     },
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
-     *         description="The ID of article",
+     *         description="The ID of comment",
      *         required=true,
      *         example="1",
      *         @OA\Schema(
@@ -95,7 +96,7 @@ class ArticleController extends Controller
      *     @OA\Response(
      *         response="200",
      *         description="Request completed successfully",
-     *         @OA\JsonContent(ref="#/components/schemas/ArticleShowRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/CommentShowRequest")
      *     ),
      * )
      *
@@ -106,23 +107,23 @@ class ArticleController extends Controller
      */
     public function show($id) : JsonResponse
     {
-        $model = Article::query()->findOrFail($id);
+        $model = Comment::query()->findOrFail($id);
         return response()->json($model);
     }
 
     /**
      * @OA\Put(
-     *     path="/article/{id}",
-     *     operationId="articleUpdate",
-     *     tags={"Article"},
-     *     summary="Update article by ID",
+     *     path="/comment/{id}",
+     *     operationId="commentUpdate",
+     *     tags={"Comment"},
+     *     summary="Update comment by ID",
      *     security={
      *       {"api_key": {}},
      *     },
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
-     *         description="The ID of article",
+     *         description="The ID of comment",
      *         required=true,
      *         example="1",
      *         @OA\Schema(
@@ -132,11 +133,11 @@ class ArticleController extends Controller
      *     @OA\Response(
      *         response="200",
      *         description="Request completed successfully",
-     *         @OA\JsonContent(ref="#/components/schemas/ArticleShowRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/CommentShowRequest")
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/ArticleStoreRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/CommentStoreRequest")
      *     ),
      * )
      *
@@ -149,7 +150,7 @@ class ArticleController extends Controller
     public function update(Request $request, int $id): JsonResponse
     {
         $params = $request->all();
-        $model  = Article::query()->findOrFail($id);
+        $model  = Comment::query()->findOrFail($id);
         $model->fill($params);
         $model->save();
 
@@ -158,17 +159,17 @@ class ArticleController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/article/{id}",
-     *     operationId="articleDelete",
-     *     tags={"Article"},
-     *     summary="Delete article by ID",
+     *     path="/comment/{id}",
+     *     operationId="commentDelete",
+     *     tags={"Comment"},
+     *     summary="Delete comment by ID",
      *     security={
      *       {"api_key": {}},
      *     },
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
-     *         description="The ID of article",
+     *         description="The ID of comment",
      *         required=true,
      *         example="1",
      *         @OA\Schema(
@@ -188,7 +189,7 @@ class ArticleController extends Controller
      */
     public function destroy(int $id): Response
     {
-        $model = Article::query()->findOrFail($id);
+        $model = Comment::query()->findOrFail($id);
         $model->delete();
 
         return response('Deleted', Response::HTTP_ACCEPTED);

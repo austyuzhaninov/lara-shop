@@ -21,9 +21,9 @@
         "/article": {
             "get": {
                 "tags": [
-                    "Pages"
+                    "Article"
                 ],
-                "summary": "Отображение всех статей",
+                "summary": "Display all articles",
                 "operationId": "articleAll",
                 "responses": {
                     "200": {
@@ -41,7 +41,7 @@
             },
             "post": {
                 "tags": [
-                    "Pages"
+                    "Article"
                 ],
                 "summary": "Create yet another article record",
                 "operationId": "articleCreate",
@@ -70,7 +70,7 @@
         "/article/{id}": {
             "get": {
                 "tags": [
-                    "Pages"
+                    "Article"
                 ],
                 "summary": "Get article by ID",
                 "operationId": "articleGet",
@@ -106,7 +106,7 @@
             },
             "put": {
                 "tags": [
-                    "Pages"
+                    "Article"
                 ],
                 "summary": "Update article by ID",
                 "operationId": "articleUpdate",
@@ -152,7 +152,7 @@
             },
             "delete": {
                 "tags": [
-                    "Pages"
+                    "Article"
                 ],
                 "summary": "Delete article by ID",
                 "operationId": "articleDelete",
@@ -161,6 +161,168 @@
                         "name": "id",
                         "in": "path",
                         "description": "The ID of article",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Deleted"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/comment": {
+            "get": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Display all comments",
+                "operationId": "commentAll",
+                "responses": {
+                    "200": {
+                        "description": "Request completed successfully"
+                    },
+                    "404": {
+                        "description": "Comment not found"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Create yet another comment record",
+                "operationId": "commentCreate",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CommentStoreRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Request completed successfully"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/comment/{id}": {
+            "get": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Get comment by ID",
+                "operationId": "commentGet",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of comment",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request completed successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommentShowRequest"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Update comment by ID",
+                "operationId": "commentUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of comment",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CommentStoreRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Request completed successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommentShowRequest"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Delete comment by ID",
+                "operationId": "commentDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of comment",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -232,6 +394,56 @@
                     }
                 },
                 "type": "object"
+            },
+            "CommentShowRequest": {
+                "title": "Comment showing request",
+                "description": "Some simple request show as comment",
+                "properties": {
+                    "article_id": {
+                        "title": "article_id",
+                        "description": "Article id where set comment",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "description": "Commentator's name",
+                        "type": "string",
+                        "example": "API:Foo Fighter!"
+                    },
+                    "text": {
+                        "title": "Text",
+                        "description": "Comment text",
+                        "type": "string",
+                        "example": "Hello! I've waited here for you."
+                    }
+                },
+                "type": "object"
+            },
+            "CommentStoreRequest": {
+                "title": "Comment showing request",
+                "description": "Some simple request store as comment",
+                "properties": {
+                    "article_id": {
+                        "title": "article_id",
+                        "description": "Article id where set comment",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "description": "Commentator's name",
+                        "type": "string",
+                        "example": "API:Foo Fighter!"
+                    },
+                    "text": {
+                        "title": "Text",
+                        "description": "Comment text",
+                        "type": "string",
+                        "example": "Hello! I've waited here for you."
+                    }
+                },
+                "type": "object"
             }
         },
         "securitySchemes": {
@@ -244,8 +456,12 @@
     },
     "tags": [
         {
-            "name": "Pages",
-            "description": "Api methods our's shop"
+            "name": "Article",
+            "description": "Api methods for articles"
+        },
+        {
+            "name": "Comment",
+            "description": "Api methods for comments"
         }
     ],
     "security": [

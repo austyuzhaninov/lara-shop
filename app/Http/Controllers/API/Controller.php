@@ -15,8 +15,12 @@ namespace App\Http\Controllers\API;
  *     )
  * )
  * @OA\Tag(
- *     name="Pages",
- *     description="Api methods our's shop",
+ *     name="Article",
+ *     description="Api methods for articles",
+ * )
+ * @OA\Tag(
+ *     name="Comment",
+ *     description="Api methods for comments",
  * )
  * @OA\Server(
  *     description="Laravel Swagger API server",
