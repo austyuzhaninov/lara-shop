@@ -23,7 +23,7 @@
                 </ul>
             </div>
         @endif
-        <form method="post" action="comment/add">
+        <form method="post" action="{{ route('commentStore', ['id' => $article->id]) }}">
             @csrf
             <input type="text" name="name" id="name" class="form-control" placeholder="Имя"><br>
             <textarea type="text" name="text" id="text" class="form-control" placeholder="Текст комментария" style="height:150px;"></textarea><br>

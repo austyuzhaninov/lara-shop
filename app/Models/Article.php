@@ -12,4 +12,8 @@ class Article extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
     protected $fillable = ['head', 'text', 'user_id'];
 
+    public function comments() {
+        return $this->hasMany('App\Models\Comment');
+    }
+
 }
