@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
+use App\Http\Requests\CommentRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 class CommentController extends Controller
 {
@@ -192,6 +192,6 @@ class CommentController extends Controller
         $model = Comment::query()->findOrFail($id);
         $model->delete();
 
-        return response('Deleted', Response::HTTP_ACCEPTED);
+        return response('Deleted', HttpResponse::HTTP_ACCEPTED);
     }
 }

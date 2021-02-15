@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
+use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 class ArticleController extends Controller
 {
@@ -191,6 +191,6 @@ class ArticleController extends Controller
         $model = Article::query()->findOrFail($id);
         $model->delete();
 
-        return response('Deleted', Response::HTTP_ACCEPTED);
+        return response('Deleted', HttpResponse::HTTP_ACCEPTED);
     }
 }
